@@ -17,7 +17,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:gravity="center_horizontal"
         android:text="출입증을 먼저 등록해야 합니다.\n아이디를 추가하시려면 아래 카드 버튼을 터치하세요."
         android:textColor="@android:color/black"
@@ -73,10 +73,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        android:text=". . ."/>
 
     <LinearLayout
-        android:layout_width="227dp"
+        android:layout_width="231dp"
         android:layout_height="63dp"
         android:layout_gravity="end"
         android:gravity="center_horizontal">
@@ -106,8 +107,8 @@
                 android:id="@+id/photoBtn_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
                 android:text="사진 추가"
-                android:layout_marginEnd="4dp"
                 android:textSize="12sp"
                 android:visibility="invisible" />
 
@@ -116,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="5dp"
                 android:layout_marginTop="5dp"
                 android:clickable="false"
                 android:visibility="invisible"
