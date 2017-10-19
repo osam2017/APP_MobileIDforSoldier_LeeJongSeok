@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset='utf-8'>
+		<title>출입증 추가</title>
+	</head>
+	<body>
+		<h1>출입증 추가(서버쪽에 추가하는 페이지입니다)</h1>
+		<form method="post" action="/addidcard">
+			<table>
+				<tr>
+					<td><label>군번(-는 빼고 입력할 것)</label></td>
+					<td><input type="text" name="ServiceNumber"></td>
+				</tr>
+				<tr>
+					<td><labeL>계급</labeL></td>
+					<td><input type="text" name="Rank"></td>
+				</tr>
+				<tr>
+					<td><label>이름</label></td>
+					<td><input type="text" name="Name"></td>
+				</tr>
+				<tr>
+					<td><label>발급일자(숫자와 . 만 입력할 것)</label></td>
+					<td><input type="text" name="Date"></td>
+				</tr>
+			</table>
+			<input type="submit" value="추가" name="">
+		</form>
+	</body>
+</html>
