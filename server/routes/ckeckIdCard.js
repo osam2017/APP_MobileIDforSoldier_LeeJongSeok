@@ -11,7 +11,7 @@ var init = function(parampool) {
 }
 
 // 출입증을 조회하는 메소드
-var query = function(ServiceNumber, Rank, Name, Date, callback) {
+var query = function(ServiceNumber, Rank, Name, iDate, callback) {
     // 커넥션 풀에서 연결 객체 가져오기
     pool.getConnection(function(err, conn) {
         if (err) {
@@ -28,21 +28,21 @@ var query = function(ServiceNumber, Rank, Name, Date, callback) {
 
         // SELECT SQL문 실행
         var selectSQL = "SELECT ?? FROM ?? WHERE servicenumber = ? AND rank = ? AND name = ? AND date = ?";
-        var exec = conn.query(selectSQL, [columns, tableName, ServiceNumber, Rank, Name, Date], function(err, result) {
+        var exec = conn.query(selectSQL, [columns, tableName, ServiceNumber, Rank, Name, iDate], function(err, rows) {
             conn.release();
-            console.log('군번 : ' + ServiceNumber + '\n계급 : ' + Rank + '\n이름 : ' + Name + 
-                        '\n발급일자 : ' + Date + '\n 인 출입증 조회 시도함...');
+            console.log('군번 : ' + ServiceNumber + '\n계급 : ' + Rank + '\n이름 : ' + Name +
+                '\n발급일자 : ' + iDate + '\n 인 출입증 조회 시도함...');
 
-            if (err) {
-                console.log('Error recurred.');
-                console.dir(err);
+            if (rows.length >0) {
+                console.log('등록된 출입증 발견됨.');
 
-                callback(err, null);
+                callback(null, rows);
 
                 return;
+            } else {
+                 console.log('데이터가 일치하는 출입증이 없음.');
+                 callback(null, null);
             }
-
-            callback(null, result);
         });
     });
 };
@@ -72,8 +72,6 @@ var checkIdCard = function(req, res) {
 
             // 성공 시, 성공 응답 전송
             if (found) {
-                console.log('등록된 출입증 발견됨.');
-
                 res.writeHead('200', {
                     'Content-type': 'text/plain;charset=utf8'
                 });
@@ -81,12 +79,10 @@ var checkIdCard = function(req, res) {
                 res.end();
 
             } else {
-                console.log('기기에서 승인 요청한 출입증이 서버에 등록되지 않았음.');
-
                 res.writeHead('200', {
                     'Content-type': 'text/plain;charset=utf8'
                 });
-                res.write("message: 출입증이 등록되지 않았음.");
+                res.write("message: 출입증이 등록되지 않았음...");
                 res.end();
             }
         });
