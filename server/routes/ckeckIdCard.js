@@ -27,13 +27,13 @@ var query = function(ServiceNumber, Rank, Name, iDate, callback) {
         var columns = ['servicenumber', 'rank', 'name', 'date'];
 
         // SELECT SQL문 실행
-        var selectSQL = "SELECT ?? FROM ?? WHERE servicenumber = ? AND rank = ? AND name = ? AND date = ?";
+        var selectSQL = " SELECT ?? FROM ?? WHERE servicenumber = ? AND rank = ? AND name = ? AND date = ? ";
         var exec = conn.query(selectSQL, [columns, tableName, ServiceNumber, Rank, Name, iDate], function(err, rows) {
             conn.release();
             console.log('군번 : ' + ServiceNumber + '\n계급 : ' + Rank + '\n이름 : ' + Name +
                 '\n발급일자 : ' + iDate + '\n 인 출입증 조회 시도함...');
 
-            if (rows.length >0) {
+            if (rows.length > 0) {
                 console.log('등록된 출입증 발견됨.');
 
                 callback(null, rows);
